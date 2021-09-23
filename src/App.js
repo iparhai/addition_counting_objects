@@ -4,6 +4,7 @@ import { mapDispatchToProps, mapStateToProps } from './redux/index'
 import Start from './containers/Start';
 import MathQuiz from './containers/MathQuiz';
 import './App.css';
+import backgroundGIF from './assets/gif/background.gif'
 import Footer from './components/Footer';
 
 class App extends Component {
@@ -17,6 +18,8 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
+        <img src={backgroundGIF} id="bg" alt="" />
+
           {
             !this.props.isStarted ? (
               <Start startPressed={this.gameStart} />
@@ -25,7 +28,7 @@ class App extends Component {
             )
           }
         </header>
-        <Footer></Footer>
+        {/* <Footer></Footer> */}
       </div>
     );
   }

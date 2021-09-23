@@ -10,17 +10,28 @@
   margin: auto;
 
 }
+#bg {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
 
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
 
 .App-header {
-  background-color: #282c34; 
-  min-height: 95vh;
+  /* background-color: #282c34;  */
+  
+  /* background: url('./assets/gif/background.gif') no-repeat; */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #7861fb;;
 }
 
 
@@ -36,7 +47,7 @@
 
 .App-brandname h1 {
   font-family: 'Courier New', Courier, monospace;
-  color: #61dafb;
+  color: #7861fb;
   margin-top: 0px;
 }
 

@@ -7,15 +7,12 @@ import Lifes from '../components/Lifes'
 import Points from '../components/Points'
 import "./MathQuiz.css"
 import TableScore from '../components/TableScore';
-import image1 from '../assets/1.jpg'
-import image2 from '../assets/2.jpg'
-import image3 from '../assets/3.jpg'
+
 
 class MathQuiz extends React.Component {
   state = {
     isBeginningDone: false,
     lastPoints: 0,
-    images : [image1, image2, image3 ]
   };
 
   retryGame = () => {
@@ -33,7 +30,7 @@ class MathQuiz extends React.Component {
         {!this.state.isBeginningDone ? (
           <Beginning isComplete={this.completeBeginning} />
         ) : (
-          <div>
+          <div className="noselect ">
             {/* <img src={this.state.images.map()} alt="learning" /> */}
             <div className="App-header-bar">
               <Timmer {...this.props} />

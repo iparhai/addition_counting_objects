@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const style = {
   buttonRetry: {
     fontSize: "1.5em",
-    color: "#61dafb",
+    color: "black",
     fontFamily: "fantasy",
     cursor: "pointer"
   },

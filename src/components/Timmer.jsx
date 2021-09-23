@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import sessionData from "../utils/sessionData.js"
+
 
 class Timmer extends React.Component {
 
@@ -17,14 +19,13 @@ class Timmer extends React.Component {
         this.setState({
           seconds: this.props.seconds
         });
-        this._secondsIntervalRef = setInterval(() => this.setState(prevState => ({
+        this._secondsIntervalRef = setInterval(() =>this.setState(prevState => ({
             seconds: --prevState.seconds
         })), 1000)
     }
-
-
     componentDidUpdate() {
         if (this.props.level !== this.state.level) {
+            sessionData.setDataTime(20-this.state.seconds)
             this.setState(prevState => ({
               level: this.props.level,
               //seconds: prevState.seconds + 20,
@@ -50,6 +51,10 @@ class Timmer extends React.Component {
                 <i className="fas fa-clock"></i> <b>{ this.state.seconds }</b>
             </span>
         )
+    }
+
+    timeTaken(){
+        return 20-this.state.seconds
     }
 }
 

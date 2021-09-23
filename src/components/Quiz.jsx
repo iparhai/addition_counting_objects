@@ -4,7 +4,8 @@ import { MathHelper } from "../utils";
 import bowl from "../assets/bowl.png"
 import rooster from "../assets/rooster.png"
 import './Quiz.css'
-
+import sessionData from "../utils/sessionData.js"
+import Drop from "./drag.jsx";
 class Quiz extends React.Component {
   _isMounted = false;
   _secondsIntervalRef;
@@ -21,6 +22,8 @@ class Quiz extends React.Component {
     images: [bowl, rooster],
     randomImage: "",
     data: [],
+    
+
   };
 
   earnLife = () => {
@@ -30,7 +33,7 @@ class Quiz extends React.Component {
       streaks: 0
     });
   };
-  getFirstNumber
+
   correctAnswer = () => {
     if (this.state.streaks > 2) {
       this.earnLife();
@@ -51,7 +54,7 @@ class Quiz extends React.Component {
   componentDidMount() {
     this._isMounted = true;
     this.getProblem();
-    this.answerInput.focus();
+    // this.answerInput.focus();
   }
 
   shouldComponentUpdate(nextProps) {
@@ -66,6 +69,7 @@ class Quiz extends React.Component {
     this._isMounted = false;
   }
 
+  
   wrongAnswer = () => {
     this._isMounted && this.props.onWrongAnswer();
     this.setState({
@@ -80,25 +84,18 @@ class Quiz extends React.Component {
       this.getProblem();
       this._isMounted &&
         this.setState({
-          modalShowing: false
+          modalShowing: false,
+          answer: 0
         });
       if (this.props.lifes > 0) (this.answerInput && this.answerInput.focus());
     }, 2500);
   };
 
   evaluateProblem = () => {
-    const temp = MathHelper.solve(this.state.problem);
-    if (this.state.data.length === 0) {
-      this.setState({
-        data: [{ problem: this.state.problem, attemptedAnswer: this.state.answer, corectAnswer: temp, timeTaken: 20 - this.props.seconds }]
-      })
-    }
-    else {
-      this.setState(previousState => ({
-        data: [...previousState.data, { problem: this.state.problem, attemptedAnswer: this.state.answer, corectAnswer: temp, timeTaken: 20 - this.props.seconds }]
-      }));
-    }
-    console.log(this.state.data)
+    const answer = MathHelper.solve(this.state.problem);
+    const attemptedAnswer = this.state.answer
+    sessionData.setData(this.state.problem, attemptedAnswer, answer)
+    // sessionData.sendData()
     if (MathHelper.compare(this.state.problem, this.state.answer)) {
       return this.correctAnswer();
     }
@@ -114,6 +111,7 @@ class Quiz extends React.Component {
     this.setState({
       answer: Number(val.match(/((-?)\d+)/g)) // accept just numbers and the minus symbol
     });
+
   };
 
   showModal = (type, text) => {
@@ -123,12 +121,10 @@ class Quiz extends React.Component {
     });
   };
 
-
   getProblem = () => {
     // const newProblemSet = MathHelper.generateAdditionProblem(this.props.points);
     const newProblemSet = MathHelper.generateSubtractionProblem(this.props.points);
     const randomImage = this.getImage()
-    console.log(newProblemSet)
     this._isMounted &&
       this.setState({
         problem: newProblemSet.problem,
@@ -160,18 +156,18 @@ class Quiz extends React.Component {
                 <tbody>
                   <tr >
                     {[...Array(parseInt(this.state.firstNumber))].map((e, i) => {
-                      return <td style={{ padding: "40px" }}><img key={i} src={this.state.randomImage} style={{ width: "100px", height: "80px" }} /> &thinsp; </td>
+                      return <td ><img key={i} src={this.state.randomImage} style={{ width: "100px", height: "80px" }} draggable="false"/> </td>
                     })}
 
-                    <td className="center" style={{ paddingLeft: "80px" }}><h1 style={{ fontSize: "3.5em" }}> {this.state.symbol} </h1></td>
+                    <td className="center" ><h1 style={{ fontSize: "3.5em" }}> {this.state.symbol} </h1></td>
 
                     {[...Array(parseInt(this.state.secondNumber))].map((e, i) => {
-                      return <td style={{ padding: "40px" }}><img key={i} src={this.state.randomImage} style={{ width: "100px", height: "80px" }} /> &thinsp;</td>
+                      return <td ><img key={i} src={this.state.randomImage} style={{ width: "100px", height: "80px" }}  draggable="false"/></td>
                     })}
                   </tr>
                 </tbody>
               </table>
-              <input
+              {/* <input
                 ref={input => {
                   this.answerInput = input;
                 }}
@@ -179,11 +175,24 @@ class Quiz extends React.Component {
                 type="number"
                 placeholder="Enter"
                 onKeyUp={this.keyingUp}
-              />
+              /> */}
+              <Drop incCount={() => { this.setState({ answer: this.state.answer + 1 })}} decCount={() => { this.setState({ answer: this.state.answer - 1 }) }} count={this.state.answer} img={this.state.randomImage} />
+              {/* <input
+                ref={input => {
+                  this.answerInput = input;
+                }}
+                className=""
+                type="number"
+                placeholder="Enter"
+                value={this.state.answer}
+                onKeyUp={this.keyingUp}
+              /> */}
+              <button className="btn fourth" onClick={this.evaluateProblem}> {this.state.answer} </button>
             </div>
           )}
         </div>
       </section>
+
     );
   }
 }
