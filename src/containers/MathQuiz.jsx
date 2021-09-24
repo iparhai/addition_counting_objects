@@ -38,7 +38,6 @@ class MathQuiz extends React.Component {
               <Points {...this.props} />
             </div>
             <div>
-
               <Quiz {...this.props} />
             </div>
           </div>

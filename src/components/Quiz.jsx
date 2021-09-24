@@ -145,9 +145,9 @@ class Quiz extends React.Component {
     // });
 
     return (
-      <section className="show-up">
+      <section className="show-up" style={{width: "100%", height:"100vh"}}>
 
-        <div>
+        <div >
           {this.state.modalShowing ? (
             this.state.modal
           ) : (
@@ -156,13 +156,13 @@ class Quiz extends React.Component {
                 <tbody>
                   <tr >
                     {[...Array(parseInt(this.state.firstNumber))].map((e, i) => {
-                      return <td ><img key={i} src={this.state.randomImage} style={{ width: "100px", height: "80px" }} draggable="false"/> </td>
+                      return <td ><img key={i} src={this.state.randomImage} style={{ width: "100%", maxWidth:"150px"}} draggable="false"/> </td>
                     })}
 
                     <td className="center" ><h1 style={{ fontSize: "3.5em" }}> {this.state.symbol} </h1></td>
 
                     {[...Array(parseInt(this.state.secondNumber))].map((e, i) => {
-                      return <td ><img key={i} src={this.state.randomImage} style={{ width: "100px", height: "80px" }}  draggable="false"/></td>
+                      return <td ><img key={i} src={this.state.randomImage} style={{ width : "100%", maxWidth:"150px"}}  draggable="false"/></td>
                     })}
                   </tr>
                 </tbody>
