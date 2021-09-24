@@ -10,9 +10,8 @@ import { BrowserRouter, Route } from "react-router-dom";
 ReactDOM.render(
     <Provider store={store} >
         <BrowserRouter>
-            <Route path="/iparhaiMathGame/:id" component={App} />
+            <Route path="/iparhaiMathGame/:id" render={(props) => <App {...props} />} />
         </BrowserRouter>
-        <App />
     </Provider>
     , document.getElementById('root')
 );
