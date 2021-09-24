@@ -152,17 +152,17 @@ class Quiz extends React.Component {
             this.state.modal
           ) : (
             <div>
-              <table >
+              <table align="center">
                 <tbody>
                   <tr >
                     {[...Array(parseInt(this.state.firstNumber))].map((e, i) => {
-                      return <td ><img key={i} src={this.state.randomImage} style={{ width: "10vh", maxWidth: "150px" }} draggable="false" /> </td>
+                      return <td ><img key={i} src={this.state.randomImage} style={{ width: "100%", maxWidth: "150px" }} draggable="false" /> </td>
                     })}
 
                     <td className="center" ><h1 style={{ fontSize: "3.5em" }}> {this.state.symbol} </h1></td>
 
                     {[...Array(parseInt(this.state.secondNumber))].map((e, i) => {
-                      return <td ><img key={i} src={this.state.randomImage} style={{ width: "10vh", maxWidth: "150px" }} draggable="false" /></td>
+                      return <td ><img key={i} src={this.state.randomImage} style={{ width: "100%", maxWidth: "150px" }} draggable="false" /></td>
                     })}
                   </tr>
                 </tbody>
