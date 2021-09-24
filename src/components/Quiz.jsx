@@ -22,7 +22,7 @@ class Quiz extends React.Component {
     images: [bowl, rooster],
     randomImage: "",
     data: [],
-    
+
 
   };
 
@@ -69,7 +69,7 @@ class Quiz extends React.Component {
     this._isMounted = false;
   }
 
-  
+
   wrongAnswer = () => {
     this._isMounted && this.props.onWrongAnswer();
     this.setState({
@@ -145,7 +145,7 @@ class Quiz extends React.Component {
     // });
 
     return (
-      <section className="show-up" style={{width: "100%", height:"100vh"}}>
+      <section className="show-up" style={{ width: "100%", height: "100vh" }}>
 
         <div >
           {this.state.modalShowing ? (
@@ -156,13 +156,13 @@ class Quiz extends React.Component {
                 <tbody>
                   <tr >
                     {[...Array(parseInt(this.state.firstNumber))].map((e, i) => {
-                      return <td ><img key={i} src={this.state.randomImage} style={{ paddingLeft: "5%", width: "90%", maxWidth:"150px"}} draggable="false"/> </td>
+                      return <td ><img key={i} src={this.state.randomImage} style={{ width: "10vh", maxWidth: "150px" }} draggable="false" /> </td>
                     })}
 
                     <td className="center" ><h1 style={{ fontSize: "3.5em" }}> {this.state.symbol} </h1></td>
 
                     {[...Array(parseInt(this.state.secondNumber))].map((e, i) => {
-                      return <td ><img key={i} src={this.state.randomImage} style={{ paddingLeft: "5%", width: "90%", maxWidth:"150px"}}  draggable="false"/></td>
+                      return <td ><img key={i} src={this.state.randomImage} style={{ width: "10vh", maxWidth: "150px" }} draggable="false" /></td>
                     })}
                   </tr>
                 </tbody>
@@ -176,7 +176,7 @@ class Quiz extends React.Component {
                 placeholder="Enter"
                 onKeyUp={this.keyingUp}
               /> */}
-              <Drop incCount={() => { this.setState({ answer: this.state.answer + 1 })}} decCount={() => { this.setState({ answer: this.state.answer - 1 }) }} count={this.state.answer} img={this.state.randomImage} />
+              <Drop incCount={() => { this.setState({ answer: this.state.answer + 1 }) }} decCount={() => { this.setState({ answer: this.state.answer - 1 }) }} count={this.state.answer} img={this.state.randomImage} />
               {/* <input
                 ref={input => {
                   this.answerInput = input;
@@ -187,7 +187,7 @@ class Quiz extends React.Component {
                 value={this.state.answer}
                 onKeyUp={this.keyingUp}
               /> */}
-              <button className="btn fourth" onClick={this.evaluateProblem}> {this.state.answer} </button>
+              <button className="btn fourth" style={{ height: "5vh", lineHeight: "1vh", verticalAlign: "middle", margin: "5vh", padding: "5vh" }} onClick={this.evaluateProblem}> {this.state.answer} </button>
             </div>
           )}
         </div>
