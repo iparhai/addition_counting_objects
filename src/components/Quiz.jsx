@@ -187,7 +187,7 @@ class Quiz extends React.Component {
                 value={this.state.answer}
                 onKeyUp={this.keyingUp}
               /> */}
-              <button className="btn fourth" style={{ height: "5vh", lineHeight: "1vh", verticalAlign: "middle", margin: "5vh", padding: "5vh" }} onClick={this.evaluateProblem}> {this.state.answer} </button>
+              <button className="btn fourth" style={{ fontSize:"4vw", height: "5vh", lineHeight: "1vh", verticalAlign: "middle", margin: "5vh", padding: "5vh" }} onClick={this.evaluateProblem}> {this.state.answer} </button>
             </div>
           )}
         </div>
