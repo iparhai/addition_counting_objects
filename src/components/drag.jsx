@@ -78,7 +78,7 @@ const Drop = (props) => {
         }
     }
     return (
-        <div className="noselect " >
+        <div className="noselect " style={{ marginTop:"-25vh"}}>
             <br />
             <div >
                 <img
