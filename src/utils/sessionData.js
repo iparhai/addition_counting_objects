@@ -32,19 +32,19 @@ const sendData = () => {
             //alert(data);
         }
     });
-    $.ajax({
-        url: "your url",
-        type: 'GET',
-        dataType: 'json', // added data type
-        success: function(res) {
-            console.log(res);
-            alert(res);
-        },
-        error : function(res){
-            console.log(res)
-            alert(res)
-        }
-    });
+    // $.ajax({
+    //     url: "your url",
+    //     type: 'GET',
+    //     dataType: 'json', // added data type
+    //     success: function(res) {
+    //         console.log(res);
+    //         alert(res);
+    //     },
+    //     error : function(res){
+    //         console.log(res)
+    //         alert(res)
+    //     }
+    // });
 }
 export default {
     setData,

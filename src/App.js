@@ -25,7 +25,6 @@ class App extends Component {
 
     alert(id)
   }
-  
   render() {
     return (
       <div className="App">

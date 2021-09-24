@@ -68,5 +68,6 @@
     line-height: 1vh;
     vertical-align :middle;
     margin: 5vh;
-    padding: 5vh
+    padding: 5vh;
+    position: relative;
   }
