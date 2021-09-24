@@ -78,7 +78,7 @@ const Drop = (props) => {
         }
     }
     return (
-        <div className="noselect " style={{ marginTop:"-25vh"}}>
+        <div className="noselect parentDiv" >
             <br />
             <div >
                 <img
@@ -88,8 +88,7 @@ const Drop = (props) => {
                     onDragStart={(e) => {
                         dragUrl.current = e.target.src;
                     }}
-                    className="noselect"
-                    style={{ height:"13vh", maxWidth:"150px"}}
+                    className="noselect draggableImage"
                 />
             </div>
             <br />
@@ -117,9 +116,7 @@ const Drop = (props) => {
                     //setCount(count + 1)
                 }}
                 onDragOver={(e) => e.preventDefault()}
-                style={{ margin: "auto", width: "100%", maxWidth:"300px", height: "20vh", maxHeight:"200px", border: "2px dashed white", marginTop:"-12vh"}}
-
-
+                className="dropBox"
             >
                 <Stage
                     width={300}

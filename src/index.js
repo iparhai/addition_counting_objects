@@ -5,9 +5,13 @@ import store from './redux/store'
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter, Route } from "react-router-dom";
 
 ReactDOM.render(
     <Provider store={store} >
+        <BrowserRouter>
+            <Route path="/:id" component={App} />
+        </BrowserRouter>
         <App />
     </Provider>
     , document.getElementById('root')

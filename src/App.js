@@ -9,7 +9,10 @@ import Footer from './components/Footer';
 
 class App extends Component {
   
-
+ 
+  componentDidMount(){
+    alert(this.props.match.params.id)
+  }
   gameStart = () => {
     this.props.onStartGame();
   }
