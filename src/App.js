@@ -9,14 +9,13 @@ import Footer from './components/Footer';
 
 class App extends Component {
   
- 
-  componentDidMount(){
+  gameStart = () => {
+    this.props.onStartGame();
+  }
+  handleURL(){
     const query = new URLSearchParams(this.props.location.search);
     const token = query.get('id')
     alert(token)
-  }
-  gameStart = () => {
-    this.props.onStartGame();
   }
   
   render() {
@@ -32,6 +31,7 @@ class App extends Component {
               <MathQuiz { ...this.props} gameStart={this.gameStart}/>
             )
           }
+          <button onClick={this.handleURL}> get ID</button>
         </header>
         {/* <Footer></Footer> */}
       </div>
