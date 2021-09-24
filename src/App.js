@@ -11,7 +11,9 @@ class App extends Component {
   
  
   componentDidMount(){
-    alert(this.props.match.params.id)
+    const query = new URLSearchParams(this.props.location.search);
+    const token = query.get('id')
+    alert(token)
   }
   gameStart = () => {
     this.props.onStartGame();
