@@ -10,7 +10,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 ReactDOM.render(
     <Provider store={store} >
         <BrowserRouter>
-            <Route path="/:id" component={App} />
+            <Route path="/iparhaiMathGame/:id" component={App} />
         </BrowserRouter>
         <App />
     </Provider>
