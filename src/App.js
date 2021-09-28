@@ -20,10 +20,10 @@ class App extends Component {
   handleURL(){
     // const query = new URLSearchParams(this.props.location.search);
     // const token = query.get('id')
-    const queryParams = new URLSearchParams(window.location.search);
-    const id = queryParams.get('id');
+    // const queryParams = new URLSearchParams(window.location.search);
+    // const id = queryParams.get('id');
 
-    alert(id)
+    // alert(id)
   }
   render() {
     return (

@@ -53,15 +53,15 @@ class Quiz extends React.Component {
   componentDidMount() {
     this._isMounted = true;
     const queryParams = new URLSearchParams(window.location.search);
-    const id = queryParams.get('id');
-    if (!id) {
+    const limit = queryParams.get('limit');
+    if (!limit) {
       this.setState({
         limit: 10
       })
     }
     else {
       this.setState({
-        limit: parseInt(id)
+        limit: parseInt(limit)
       })
     }
     this.getProblem();

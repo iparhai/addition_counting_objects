@@ -45,7 +45,7 @@ const sendData = () => {
             alert("hit")
         },
         error: function(data) {
-            //alert(data);
+            alert(data);
         }
     });
     // $.ajax({
