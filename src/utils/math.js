@@ -98,10 +98,10 @@ const generateProblem = (points) => {
 const generateAdditionProblem = (points) => {
     const lv = 1;
     let firstNumber = getRandomNumber();
-    if (firstNumber === 0) firstNumber = 1
+    if (firstNumber == 0) firstNumber = 1
     let symbol = "+";
     let secondNumber = getRandomNumber();
-    if (secondNumber === 0) secondNumber = 1
+    if (secondNumber == 0) secondNumber = 1
     let problem = firstNumber
     problem += ` ${symbol} ${secondNumber}`
     return { problem, firstNumber, secondNumber, symbol }
