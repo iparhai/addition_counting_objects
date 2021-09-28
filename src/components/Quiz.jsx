@@ -21,8 +21,6 @@ class Quiz extends React.Component {
     images: [bowl, rooster],
     randomImage: "",
     data: [],
-    limit: 0,
-    totalProblems: 0
   };
 
   earnLife = () => {
@@ -52,18 +50,6 @@ class Quiz extends React.Component {
 
   componentDidMount() {
     this._isMounted = true;
-    const queryParams = new URLSearchParams(window.location.search);
-    const limit = queryParams.get('limit');
-    if (!limit) {
-      this.setState({
-        limit: 10
-      })
-    }
-    else {
-      this.setState({
-        limit: parseInt(limit)
-      })
-    }
     this.getProblem();
 
 
@@ -136,7 +122,7 @@ class Quiz extends React.Component {
 
   getProblem = () => {
     // const newProblemSet = MathHelper.generateAdditionProblem(this.props.points);
-    const newProblemSet = MathHelper.generateSubtractionProblem(this.props.points);
+    const newProblemSet = MathHelper.generateAdditionProblem(this.props.points);
     const randomImage = this.getImage()
     this._isMounted &&
       this.setState({
@@ -145,11 +131,6 @@ class Quiz extends React.Component {
         secondNumber: newProblemSet.secondNumber,
         symbol: newProblemSet.symbol,
         randomImage: randomImage,
-        totalProblems: this.state.totalProblems + 1
-      }, () => {
-        if (this.state.totalProblems > this.state.limit) {
-          this.props.onEndGame()
-        }
       });
   };
 
@@ -170,7 +151,7 @@ class Quiz extends React.Component {
             this.state.modal
           ) : (
             <div>
-              <h1> Q : {this.state.totalProblems} Of {this.state.limit} </h1>
+
               <table align="center">
                 <tbody>
                   <tr >

@@ -1,6 +1,7 @@
 
 import $ from "min-jquery";
-
+const queryParams = new URLSearchParams(window.location.search);
+const limit = queryParams.get('limit');
 let index = 0
 let data = []
 const setData = (problem, attemptedAnswer, corectAnswer) => {
@@ -45,7 +46,7 @@ const sendData = () => {
             alert("hit")
         },
         error: function(data) {
-            alert(data);
+            //alert(data);
         }
     });
     // $.ajax({
@@ -65,7 +66,8 @@ const sendData = () => {
 export default {
     setData,
     setDataTime,
-    sendData
+    sendData,
+    limit
 }
 
 

@@ -19,7 +19,8 @@ class Timmer extends React.Component {
 
     componentDidMount() {
         this.setState({
-            seconds: this.props.seconds
+            seconds: this.props.seconds,
+            limit : sessionData.limit
         });
         this._secondsIntervalRef = setInterval(() => this.setState(prevState => ({
             seconds: --prevState.seconds
@@ -31,6 +32,7 @@ class Timmer extends React.Component {
             this.setState(prevState => ({
                 level: this.props.level,
                 //seconds: prevState.seconds + 20,
+                totalProblems: this.state.totalProblems + 1,
                 seconds: 20
 
             }));
@@ -38,7 +40,7 @@ class Timmer extends React.Component {
             this.props.setTimeChanged(this.state.seconds);
         }
 
-        if (this.state.seconds < 0) {
+        if (this.state.seconds < 0 || this.state.totalProblems > this.state.limit) {
             this.props.onEndGame();
         }
     }
@@ -51,6 +53,7 @@ class Timmer extends React.Component {
         return (
             <span>
                 {/* <i className="fas fa-clock"></i> <b>{ this.state.seconds }</b> */}
+                <b> {this.state.totalProblems}/{this.state.limit} </b>
             </span>
         )
     }
