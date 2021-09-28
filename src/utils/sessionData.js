@@ -20,8 +20,24 @@ const sendData = () => {
     if(data[index].attemptedAnswer == data[index].corectAnswer){
         st = 1
     }
+    const queryParams = new URLSearchParams(window.location.search);
+    const limit = queryParams.get('limit');
+    const cid = queryParams.get('cid');
+    const crcid = queryParams.get('crcid');
+    const sid = queryParams.get('sid');
+    const dif = queryParams.get('dif');
+    const uid = queryParams.get('uid');
+    const id = queryParams.get('id');
+    // alert("limit  = " + limit)
+    // alert("cid = " + cid)
+    // alert("crcid = " + crcid)
+    // alert("sid =  " + sid)
+    // alert("dif = " + dif)
+    // alert("uid =  " + uid)
+    // alert("id =  " + id)
+    
     $.ajax({
-        url: "https://nano-softs.com/adaptive/api.php?prb=" + data[index].problem + "&aa="+data[index].attemptedAnswer+"&ca="+data[index].corectAnswer+"&tt="+data[index].timeTaken+"&st="+st+"&tkn="+tkn,
+        url: "https://nano-softs.com/adaptive/api.php?prb=" + data[index].problem + "&aa="+data[index].attemptedAnswer+"&ca="+data[index].corectAnswer+"&tt="+data[index].timeTaken+"&st="+st+"&tkn="+tkn+"&limit="+limit+"&cid="+cid+"&crcid="+crcid+"&sid="+sid+"&dif="+dif+"&uid="+uid+"&id="+id,
         type: "post",
         data: values,
         success: function (data) {

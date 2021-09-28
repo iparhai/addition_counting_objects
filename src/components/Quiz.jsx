@@ -9,7 +9,6 @@ import Drop from "./drag.jsx";
 class Quiz extends React.Component {
   _isMounted = false;
   _secondsIntervalRef;
-
   state = {
     problem: "",
     firstNumber: 0,
@@ -22,8 +21,8 @@ class Quiz extends React.Component {
     images: [bowl, rooster],
     randomImage: "",
     data: [],
-
-
+    limit: 0,
+    totalProblems: 0
   };
 
   earnLife = () => {
@@ -53,7 +52,21 @@ class Quiz extends React.Component {
 
   componentDidMount() {
     this._isMounted = true;
+    const queryParams = new URLSearchParams(window.location.search);
+    const id = queryParams.get('id');
+    if (!id) {
+      this.setState({
+        limit: 10
+      })
+    }
+    else {
+      this.setState({
+        limit: parseInt(id)
+      })
+    }
     this.getProblem();
+
+
     // this.answerInput.focus();
   }
 
@@ -131,7 +144,12 @@ class Quiz extends React.Component {
         firstNumber: newProblemSet.firstNumber,
         secondNumber: newProblemSet.secondNumber,
         symbol: newProblemSet.symbol,
-        randomImage: randomImage
+        randomImage: randomImage,
+        totalProblems: this.state.totalProblems + 1
+      }, () => {
+        if (this.state.totalProblems > this.state.limit) {
+          this.props.onEndGame()
+        }
       });
   };
 
@@ -152,6 +170,7 @@ class Quiz extends React.Component {
             this.state.modal
           ) : (
             <div>
+              <h1> Q : {this.state.totalProblems} Of {this.state.limit} </h1>
               <table align="center">
                 <tbody>
                   <tr >
@@ -187,7 +206,7 @@ class Quiz extends React.Component {
                 value={this.state.answer}
                 onKeyUp={this.keyingUp}
               /> */}
-              <button className="btn fourth answerButton"  onClick={this.evaluateProblem}> {this.state.answer} </button>
+              <button className="btn fourth answerButton" onClick={this.evaluateProblem}> {this.state.answer} </button>
             </div>
           )}
         </div>

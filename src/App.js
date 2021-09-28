@@ -38,7 +38,6 @@ class App extends Component {
               <MathQuiz { ...this.props} gameStart={this.gameStart}/>
             )
           }
-          <button onClick={this.handleURL}> get ID</button>
         </header>
         {/* <Footer></Footer> */}
       </div>

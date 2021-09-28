@@ -17,9 +17,10 @@
     margin-top:-12vh
   }
   .draggableImage{
-    height:13vh;
+    height:11vh;
+    margin-bottom: 6vh;
     max-width:150px
   }
   .parentDiv{
-    margin-top:-25vh
+    margin-top:0
   }
