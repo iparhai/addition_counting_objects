@@ -20,7 +20,7 @@ const style = {
     border: "0.5px solid #61dafb"
   },
   poinstStyle: {
-    color: "#61dafb",
+    color: "black",
     fontWeight: "bold"
   }
 };

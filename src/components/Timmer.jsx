@@ -41,7 +41,7 @@ class Timmer extends React.Component {
         }
 
         if (this.state.seconds < 0 || this.state.totalProblems > this.state.limit) {
-            this.props.onEndGame();
+            this.props.onEndGame(this.props.points);
         }
     }
 

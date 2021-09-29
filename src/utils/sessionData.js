@@ -2,6 +2,7 @@
 import $ from "min-jquery";
 const queryParams = new URLSearchParams(window.location.search);
 const limit = queryParams.get('limit');
+const dif = queryParams.get('dif');
 let index = 0
 let data = []
 const setData = (problem, attemptedAnswer, corectAnswer) => {
@@ -21,14 +22,13 @@ const sendData = () => {
     if(data[index].attemptedAnswer == data[index].corectAnswer){
         st = 1
     }
-    const queryParams = new URLSearchParams(window.location.search);
     const limit = queryParams.get('limit');
     const cid = queryParams.get('cid');
     const crcid = queryParams.get('crcid');
     const sid = queryParams.get('sid');
-    const dif = queryParams.get('dif');
     const uid = queryParams.get('uid');
     const id = queryParams.get('id');
+    const type = queryParams.get('type')
     // alert("limit  = " + limit)
     // alert("cid = " + cid)
     // alert("crcid = " + crcid)
@@ -36,9 +36,9 @@ const sendData = () => {
     // alert("dif = " + dif)
     // alert("uid =  " + uid)
     // alert("id =  " + id)
-    
+    //alert("enters ajax with "+ limit+","+cid+","+crcid+","+sid+","+dif+","+uid+","+id)
     $.ajax({
-        url: "https://nano-softs.com/adaptive/api.php?prb=" + data[index].problem + "&aa="+data[index].attemptedAnswer+"&ca="+data[index].corectAnswer+"&tt="+data[index].timeTaken+"&st="+st+"&tkn="+tkn+"&limit="+limit+"&cid="+cid+"&crcid="+crcid+"&sid="+sid+"&dif="+dif+"&uid="+uid+"&id="+id,
+        url: "https://nano-softs.com/adaptive/api.php?prb=" + data[index].problem + "&aa="+data[index].attemptedAnswer+"&ca="+data[index].corectAnswer+"&tt="+data[index].timeTaken+"&st="+st+"&tkn="+tkn+"&limit="+limit+"&cid="+cid+"&crcid="+crcid+"&sid="+sid+"&dif="+dif+"&uid="+uid+"&id="+id+"&type="+type,
         type: "post",
         data: values,
         success: function (data) {
@@ -49,25 +49,13 @@ const sendData = () => {
             //alert(data);
         }
     });
-    // $.ajax({
-    //     url: "your url",
-    //     type: 'GET',
-    //     dataType: 'json', // added data type
-    //     success: function(res) {
-    //         console.log(res);
-    //         alert(res);
-    //     },
-    //     error : function(res){
-    //         console.log(res)
-    //         alert(res)
-    //     }
-    // });
 }
 export default {
     setData,
     setDataTime,
     sendData,
-    limit
+    limit,
+    dif
 }
 
 

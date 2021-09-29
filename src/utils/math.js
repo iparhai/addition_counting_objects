@@ -1,5 +1,6 @@
-export const PRIMES_NUMBERS = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
 
+import sessionData from "./sessionData";
+export const PRIMES_NUMBERS = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
 
 /**
  * Get a random symbol (+ , - , / , *)
@@ -63,7 +64,24 @@ export const evaluate = (symbol, prev) => {
  * @param {number} range 
  */
 const getRandomNumber = range => {
-    return (Math.random() * ((range - 1) + 1 || 5)).toFixed()
+    let eq ;
+    let min = 1
+    if(sessionData.dif == null || sessionData.dif == "b"){
+        range = 5
+        min = 1
+        eq = ((Math.random() * (range - min)) + 1 ).toFixed()
+    }
+    else if( sessionData.dif == "i"){
+        range = 20
+        min = 10
+        eq = ((Math.random() * (range - min)) + min ).toFixed()
+    }
+    else if (sessionData.dif == "m"){
+        range = 30
+        min = 15
+        eq = ((Math.random() * (range - min)) + min ).toFixed()
+    }
+    return eq
 }
 
 
@@ -98,10 +116,8 @@ const generateProblem = (points) => {
 const generateAdditionProblem = (points) => {
     const lv = 1;
     let firstNumber = getRandomNumber();
-    if (firstNumber == 0) firstNumber = 1
     let symbol = "+";
     let secondNumber = getRandomNumber();
-    if (secondNumber == 0) secondNumber = 1
     let problem = firstNumber
     problem += ` ${symbol} ${secondNumber}`
     return { problem, firstNumber, secondNumber, symbol }
