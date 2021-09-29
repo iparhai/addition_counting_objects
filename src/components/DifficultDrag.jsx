@@ -50,7 +50,7 @@ const URLImage = ({ image, handleClick }) => {
     );
 };
 
-const Drop = (props) => {
+const DifficultDrag = (props) => {
     const dragUrl = React.useRef();
     const stageRef = React.useRef();
     const [images, setImages] = React.useState([]);
@@ -144,4 +144,4 @@ const Drop = (props) => {
     );
 };
 
-export default Drop;
+export default DifficultDrag;

@@ -178,7 +178,7 @@ class Quiz extends React.Component {
                 placeholder="Enter"
                 onKeyUp={this.keyingUp}
               /> */}
-              <Drop incCount={() => { this.setState({ answer: this.state.answer + 1 }) }} decCount={() => { this.setState({ answer: this.state.answer - 1 }) }} count={this.state.answer} img={this.state.randomImage} />
+              <Drop incCount={(number) => { this.setState({ answer: this.state.answer + number }) }} decCount={(number) => { this.setState({ answer: this.state.answer - number }) }} count={this.state.answer} img={this.state.randomImage} />
               {/* <input
                 ref={input => {
                   this.answerInput = input;
