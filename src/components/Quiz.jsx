@@ -6,6 +6,7 @@ import rooster from "../assets/rooster.png"
 import './Quiz.css'
 import sessionData from "../utils/sessionData.js"
 import Drop from "./drag.jsx";
+import DifficultDrag from "./DifficultDrag";
 class Quiz extends React.Component {
   _isMounted = false;
   _secondsIntervalRef;
@@ -151,23 +152,31 @@ class Quiz extends React.Component {
             this.state.modal
           ) : (
             <div>
-              {sessionData.dif != "b" ? <h1 style={{ fontSize: "3.5em" }}> {this.state.problem} </h1> :
-                <table align="center">
-                  <tbody>
-                    <tr >
-                      {[...Array(parseInt(this.state.firstNumber))].map((e, i) => {
-                        return <td ><img key={i} src={this.state.randomImage} className="questionImage" draggable="false" /> </td>
-                      })}
+              {sessionData.dif != "b" ?
+                <div>
+                  <h1 style={{ fontSize: "3.5em" }}> {this.state.problem} </h1>
+                  <DifficultDrag incCount={(number) => { this.setState({ answer: this.state.answer + number }) }} decCount={(number) => { this.setState({ answer: this.state.answer - number }) }} count={this.state.answer} img={this.state.randomImage} />
+                </div> :
+                <div>
+                  <table align="center">
+                    <tbody>
+                      <tr >
+                        {[...Array(parseInt(this.state.firstNumber))].map((e, i) => {
+                          return <td ><img key={i} src={this.state.randomImage} className="questionImage" draggable="false" /> </td>
+                        })}
 
-                      <td className="center"><h1 style={{ fontSize: "3.5em" }}> {this.state.symbol} </h1></td>
+                        <td className="center"><h1 style={{ fontSize: "3.5em" }}> {this.state.symbol} </h1></td>
 
-                      {[...Array(parseInt(this.state.secondNumber))].map((e, i) => {
-                        return <td ><img key={i} src={this.state.randomImage} className="questionImage" draggable="false" /></td>
-                      })}
+                        {[...Array(parseInt(this.state.secondNumber))].map((e, i) => {
+                          return <td ><img key={i} src={this.state.randomImage} className="questionImage" draggable="false" /></td>
+                        })}
 
-                    </tr>
-                  </tbody>
-                </table>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <Drop incCount={(number) => { this.setState({ answer: this.state.answer + number }) }} decCount={(number) => { this.setState({ answer: this.state.answer - number }) }} count={this.state.answer} img={this.state.randomImage} />
+
+                </div>
               }
               {/* <input
                 ref={input => {
@@ -178,7 +187,6 @@ class Quiz extends React.Component {
                 placeholder="Enter"
                 onKeyUp={this.keyingUp}
               /> */}
-              <Drop incCount={(number) => { this.setState({ answer: this.state.answer + number }) }} decCount={(number) => { this.setState({ answer: this.state.answer - number }) }} count={this.state.answer} img={this.state.randomImage} />
               {/* <input
                 ref={input => {
                   this.answerInput = input;

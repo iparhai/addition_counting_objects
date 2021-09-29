@@ -83,6 +83,7 @@ const Drop = (props) => {
             <div >
                 <img
                     alt="lion"
+                    
                     src={props.img}
                     draggable={props.count < 10 ? "true" : "false"}
                     onDragStart={(e) => {
@@ -98,6 +99,7 @@ const Drop = (props) => {
                 onDrop={(e) => {
                     e.preventDefault();
                     // register event position
+                   
                     stageRef.current.setPointersPositions(e);
                     // add image
 

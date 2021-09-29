@@ -1,6 +1,10 @@
 import React from 'react';
 import { Stage, Layer, Image } from 'react-konva';
 import useImage from 'use-image';
+import ball10 from "../assets/ball10.png"
+import ball1 from "../assets/ball1.png"
+import rooster from "../assets/rooster.png"
+
 import './drag.css'
 import _1 from '../assets/sounds/_1.mp3';
 import _2 from '../assets/sounds/_2.mp3';
@@ -34,7 +38,7 @@ const dragHeight = 0;
 
 const URLImage = ({ image, handleClick }) => {
     const [img] = useImage(image.src);
-    
+
     return (
         <Image
             image={img}
@@ -53,6 +57,7 @@ const URLImage = ({ image, handleClick }) => {
 const DifficultDrag = (props) => {
     const dragUrl = React.useRef();
     const stageRef = React.useRef();
+    const image = React.useRef();
     const [images, setImages] = React.useState([]);
     const [playRemoveEffect] = useSound(removeEffect)
 
@@ -80,13 +85,29 @@ const DifficultDrag = (props) => {
     return (
         <div className="noselect parentDiv" >
             <br />
-            <div >
+            <div style={{ marginLeft:"10%", display: "flex", flexWrap: "wrap"}}>
                 <img
                     alt="lion"
-                    src={props.img}
-                    draggable={props.count < 10 ? "true" : "false"}
+                    src={ball1}
+                    name="1"
+                    draggable={props.count < 100 ? "true" : "false"}
                     onDragStart={(e) => {
                         dragUrl.current = e.target.src;
+                        image.current = e.target.name
+                    }}
+                    className="noselect draggableImage"
+                />
+                &nbsp;
+                &nbsp;
+
+                <img
+                    alt="lion"
+                    name="10"
+                    src={ball10}
+                    draggable={props.count < 100 ? "true" : "false"}
+                    onDragStart={(e) => {
+                        dragUrl.current = e.target.src;
+                        image.current = e.target.name
                     }}
                     className="noselect draggableImage"
                 />
@@ -106,12 +127,17 @@ const DifficultDrag = (props) => {
                             {
                                 ...stageRef.current.getPointerPosition(),
                                 src: dragUrl.current,
+                                name: image.current
                             },
                         ])
                     );
-
-                    props.incCount(1)
-                    playSoundEffect(props.count)
+                    if (image.current == "10") {
+                        props.incCount(10)
+                    }
+                    else {
+                        props.incCount(1)
+                    }
+                    // playSoundEffect(props.count)
 
                     //setCount(count + 1)
                 }}
@@ -124,13 +150,19 @@ const DifficultDrag = (props) => {
                     ref={stageRef}
                 >
                     <Layer>
-                        {images.map((image) => {
-                            return <URLImage image={image} handleClick={() => {
+                        {images.map((im) => {
+                            return <URLImage image={im} handleClick={() => {
+                                console.log(im)
                                 setImages(
-                                    images.filter(item => item !== image)
+                                    images.filter(item => item !== im)
                                 )
                                 playRemoveEffect()
-                                props.decCount(1)
+                                if (im.name == "10") {
+                                    props.decCount(10)
+                                }
+                                else {
+                                    props.decCount(1)
+                                }
                             }} />;
                         })}
                     </Layer>

@@ -5,7 +5,10 @@ import Start from './containers/Start';
 import MathQuiz from './containers/MathQuiz';
 import './App.css';
 import backgroundGIF from './assets/gif/background.gif'
+import backgroundGIF2 from './assets/gif/background2.gif'
+
 import Footer from './components/Footer';
+import sessionData from './utils/sessionData';
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,11 +16,11 @@ import {
   Link
 } from "react-router-dom";
 class App extends Component {
-  
+
   gameStart = () => {
     this.props.onStartGame();
   }
-  handleURL(){
+  handleURL() {
     // const query = new URLSearchParams(this.props.location.search);
     // const token = query.get('id')
     // const queryParams = new URLSearchParams(window.location.search);
@@ -29,13 +32,13 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-        <img src={backgroundGIF} id="bg" alt="" />
+          {sessionData.dif == "b" ? <img src={backgroundGIF} id="bg" alt="" /> : <img src={backgroundGIF2} id="bg" alt="" />}
 
           {
             !this.props.isStarted ? (
               <Start startPressed={this.gameStart} />
             ) : (
-              <MathQuiz { ...this.props} gameStart={this.gameStart}/>
+              <MathQuiz {...this.props} gameStart={this.gameStart} />
             )
           }
         </header>
