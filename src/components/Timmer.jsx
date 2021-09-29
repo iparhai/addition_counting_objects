@@ -13,7 +13,7 @@ class Timmer extends React.Component {
             seconds: this.props.seconds,
             level: this.props.level,
             limit: 0,
-            totalProblems: 0
+            totalProblems: 1
         }
     }
 

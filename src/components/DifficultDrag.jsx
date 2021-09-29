@@ -1,8 +1,8 @@
 import React from 'react';
 import { Stage, Layer, Image } from 'react-konva';
 import useImage from 'use-image';
-import ball10 from "../assets/ball10.png"
-import ball1 from "../assets/ball1.png"
+import ball10 from "../assets/football10.png"
+import ball1 from "../assets/football1.png"
 import rooster from "../assets/rooster.png"
 
 import './drag.css'
@@ -85,21 +85,7 @@ const DifficultDrag = (props) => {
     return (
         <div className="noselect parentDiv" >
             <br />
-            <div style={{ marginLeft:"10%", display: "flex", flexWrap: "wrap"}}>
-                <img
-                    alt="lion"
-                    src={ball1}
-                    name="1"
-                    draggable={props.count < 100 ? "true" : "false"}
-                    onDragStart={(e) => {
-                        dragUrl.current = e.target.src;
-                        image.current = e.target.name
-                    }}
-                    className="noselect draggableImage"
-                />
-                &nbsp;
-                &nbsp;
-
+            <div style={{ marginLeft: "10%", display: "flex", flexWrap: "wrap" }}>
                 <img
                     alt="lion"
                     name="10"
@@ -111,6 +97,20 @@ const DifficultDrag = (props) => {
                     }}
                     className="noselect draggableImage"
                 />
+                &nbsp;
+                &nbsp;
+                <img
+                    alt="lion"
+                    src={ball1}
+                    name="1"
+                    draggable={props.count < 100 ? "true" : "false"}
+                    onDragStart={(e) => {
+                        dragUrl.current = e.target.src;
+                        image.current = e.target.name
+                    }}
+                    className="noselect draggableImage"
+                />
+                
             </div>
             <br />
             <br />
