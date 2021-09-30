@@ -18,6 +18,8 @@ import _9 from '../assets/sounds/_9.mp3';
 import _10 from '../assets/sounds/_10.mp3';
 import removeEffect from '../assets/sounds/removeItem.mp3'
 import useSound from 'use-sound';
+import "animate.css"
+import { useEffect } from 'react';
 // import _6  from '../assets/sounds/_6.mp3';
 // import _6  from '../assets/sounds/_6.mp3';
 // import _6  from '../assets/sounds/_6.mp3';
@@ -60,7 +62,7 @@ const DifficultDrag = (props) => {
     const image = React.useRef();
     const [images, setImages] = React.useState([]);
     const [playRemoveEffect] = useSound(removeEffect)
-
+    const [hover, setHover] = React.useState([false, false])
 
     const [sounds] = React.useState([
         new Audio(_1),
@@ -82,6 +84,19 @@ const DifficultDrag = (props) => {
             sounds[soundEffectIndex].play();
         }
     }
+    
+    const toggleHover = (index, value) => {
+        let temp = hover.slice();
+        temp[index] = value
+        setHover(temp)
+       
+    }
+
+
+    var animate = "animate__animated animate__bounce"
+
+
+
     return (
         <div className="noselect parentDiv" >
             <br />
@@ -95,7 +110,9 @@ const DifficultDrag = (props) => {
                         dragUrl.current = e.target.src;
                         image.current = e.target.name
                     }}
-                    className="noselect draggableImage"
+                    className={"noselect draggableImage " + (hover[0] && animate)}
+                    onMouseEnter={() => { toggleHover(0, true) }}
+                    onMouseLeave={() => { toggleHover(0, false) }}
                 />
                 &nbsp;
                 &nbsp;
@@ -108,9 +125,11 @@ const DifficultDrag = (props) => {
                         dragUrl.current = e.target.src;
                         image.current = e.target.name
                     }}
-                    className="noselect draggableImage"
+                    className={"noselect draggableImage " + (hover[1] && animate ) }
+                    onMouseEnter={() => { toggleHover(1, true) }}
+                    onMouseLeave={() => { toggleHover(1, false) }}
                 />
-                
+
             </div>
             <br />
             <br />
