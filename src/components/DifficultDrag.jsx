@@ -18,6 +18,7 @@ import _9 from '../assets/sounds/_9.mp3';
 import _10 from '../assets/sounds/_10.mp3';
 import removeEffect from '../assets/sounds/removeItem.mp3'
 import useSound from 'use-sound';
+import bounce from '../assets/sounds/bouncingFootball.wav'
 import "animate.css"
 import { useEffect } from 'react';
 // import _6  from '../assets/sounds/_6.mp3';
@@ -63,6 +64,7 @@ const DifficultDrag = (props) => {
     const [images, setImages] = React.useState([]);
     const [playRemoveEffect] = useSound(removeEffect)
     const [hover, setHover] = React.useState([false, false])
+    const [bounceSound] = React.useState(new Audio(bounce))
 
     const [sounds] = React.useState([
         new Audio(_1),
@@ -84,12 +86,11 @@ const DifficultDrag = (props) => {
             sounds[soundEffectIndex].play();
         }
     }
-    
+
     const toggleHover = (index, value) => {
         let temp = hover.slice();
         temp[index] = value
         setHover(temp)
-       
     }
 
 
@@ -111,8 +112,15 @@ const DifficultDrag = (props) => {
                         image.current = e.target.name
                     }}
                     className={"noselect draggableImage " + (hover[0] && animate)}
-                    onMouseEnter={() => { toggleHover(0, true) }}
-                    onMouseLeave={() => { toggleHover(0, false) }}
+                    onMouseEnter={() => {
+                        bounceSound.play()
+                        toggleHover(0, true)
+                    }}
+                    onMouseLeave={() => {
+                        bounceSound.pause();
+                        bounceSound.currentTime = 0;
+                        toggleHover(0, false)
+                    }}
                 />
                 &nbsp;
                 &nbsp;
@@ -125,9 +133,16 @@ const DifficultDrag = (props) => {
                         dragUrl.current = e.target.src;
                         image.current = e.target.name
                     }}
-                    className={"noselect draggableImage " + (hover[1] && animate ) }
-                    onMouseEnter={() => { toggleHover(1, true) }}
-                    onMouseLeave={() => { toggleHover(1, false) }}
+                    className={"noselect draggableImage " + (hover[1] && animate)}
+                    onMouseEnter={() => {
+                        bounceSound.play()
+                        toggleHover(1, true)
+                    }}
+                    onMouseLeave={() => {
+                        bounceSound.pause();
+                        bounceSound.currentTime = 0;
+                        toggleHover(1, false)
+                    }}
                 />
 
             </div>
