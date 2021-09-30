@@ -55,6 +55,7 @@ const Drop = (props) => {
     const stageRef = React.useRef();
     const [images, setImages] = React.useState([]);
     const [playRemoveEffect] = useSound(removeEffect)
+    const [hover, setHover] = React.useState(false)
 
 
     const [sounds] = React.useState([
@@ -77,6 +78,16 @@ const Drop = (props) => {
             sounds[soundEffectIndex].play();
         }
     }
+    const toggleHover = (value) =>{
+        setHover(value)
+    }
+    var animate;
+    if(hover){
+        animate = "animate__animated animate__heartBeat"
+    }
+    else{
+        animate = ""
+    }
     return (
         <div className="noselect parentDiv" >
             <br />
@@ -89,7 +100,9 @@ const Drop = (props) => {
                     onDragStart={(e) => {
                         dragUrl.current = e.target.src;
                     }}
-                    className="noselect draggableImage"
+                    className={"noselect draggableImage " + animate}
+                    onMouseEnter={()=>{toggleHover(true)}}
+                    onMouseLeave={()=>{toggleHover(false)}}
                 />
             </div>
             <br />

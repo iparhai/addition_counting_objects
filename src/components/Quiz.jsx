@@ -7,6 +7,7 @@ import './Quiz.css'
 import sessionData from "../utils/sessionData.js"
 import Drop from "./drag.jsx";
 import DifficultDrag from "./DifficultDrag";
+import "animate.css"
 class Quiz extends React.Component {
   _isMounted = false;
   _secondsIntervalRef;
@@ -52,7 +53,7 @@ class Quiz extends React.Component {
   componentDidMount() {
     this._isMounted = true;
     this.getProblem();
-
+    this.populateHover();
 
     // this.answerInput.focus();
   }
@@ -94,7 +95,7 @@ class Quiz extends React.Component {
   evaluateProblem = () => {
     const answer = MathHelper.solve(this.state.problem);
     const attemptedAnswer = this.state.answer
-    const problem = this.state.firstNumber+"!"+this.state.secondNumber
+    const problem = this.state.firstNumber + "!" + this.state.secondNumber
     alert(problem)
     sessionData.setData(problem, attemptedAnswer, answer)
     // sessionData.sendData()
@@ -136,11 +137,18 @@ class Quiz extends React.Component {
         randomImage: randomImage,
       });
   };
+  populateHover = () =>{
+    let arrayHover = []
+    for(let i = 0; i < this.state.firstNumber ; i ++){
+      arrayHover.push(false)
+    }
+    this.setState({hover:arrayHover})
+  }
 
   getImage = () => {
     return this.state.images[MathHelper.getRandomInt(0, this.state.images.length - 1)]
   }
-
+ 
   render() {
     // const images = [...Array(parseInt(this.state.firstNumber))].map((e, i) => {
     //   return <img key={i} src={bowl} style={{ width: "100px", height: "80px" }} />
@@ -164,13 +172,13 @@ class Quiz extends React.Component {
                     <tbody>
                       <tr >
                         {[...Array(parseInt(this.state.firstNumber))].map((e, i) => {
-                          return <td ><img key={i} src={this.state.randomImage} className="questionImage" draggable="false" /> </td>
+                          return <td ><img key={i} src={this.state.randomImage} className="questionImage "  draggable="false"  /> </td>
                         })}
 
                         <td className="center"><h1 style={{ fontSize: "3.5em" }}> {this.state.symbol} </h1></td>
 
                         {[...Array(parseInt(this.state.secondNumber))].map((e, i) => {
-                          return <td ><img key={i} src={this.state.randomImage} className="questionImage" draggable="false" /></td>
+                          return <td ><img key={i} src={this.state.randomImage} className="questionImage "  draggable="false" /></td>
                         })}
 
                       </tr>
