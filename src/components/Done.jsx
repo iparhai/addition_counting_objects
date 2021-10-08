@@ -40,8 +40,8 @@ class Done extends React.Component {
           RETRY
         </h3>
         {/* <h5 style={otherButton} onClick={this.props.onReStartGame}>
-          Another player
-        </h5> */}
+        Another player
+      </h5> */}
         {this.children}
       </div>
     );

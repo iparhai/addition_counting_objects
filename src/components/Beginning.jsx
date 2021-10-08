@@ -38,7 +38,7 @@ class Beginning extends React.Component {
   render() {
     return (
       <div>
-        <h3>GET READY...</h3>
+        <h3> GET READY...</h3>
         <h1>{this.state.msg}</h1>
       </div>
     );

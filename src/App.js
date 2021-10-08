@@ -6,12 +6,12 @@ import MathQuiz from './containers/MathQuiz';
 import './App.css';
 import backgroundGIF from './assets/gif/background.gif'
 import backgroundGIF2 from './assets/gif/background2.gif'
-import grocerySound from './assets/sounds/grocerySound.mp3'
-import on from './assets/sound.png'
-import off from './assets/mute.png'
 
 import Footer from './components/Footer';
 import sessionData from './utils/sessionData';
+import grocerySound from './assets/sounds/grocerySound.mp3'
+import on from './assets/sound.png'
+import off from './assets/mute.png'
 import {
   BrowserRouter as Router,
   Switch,
@@ -36,14 +36,8 @@ class App extends Component {
 
     // alert(id)
   }
-  componentDidMount() {
-    console.log("i am playing")
-    this.setState({
-      sound: new Audio(grocerySound)
-    }, () => {
-      this.state.sound.loop = true
-      this.state.sound.play()
-    })
+  componentDidMount(){
+    this.state.sound.play()
   }
   handleSoundClick = () => {
     if (!this.state.sound.paused) {
@@ -59,7 +53,6 @@ class App extends Component {
       })
     }
   }
-
   render() {
     return (
       <div className="App">
