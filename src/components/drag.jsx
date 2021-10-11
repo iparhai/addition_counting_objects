@@ -35,7 +35,7 @@ const dropHeight = 0;
 const dragWidth = 0;
 const dragHeight = 0;
 
-const URLImage = ({ image, handleClick }) => {
+const URLImage = ({ image, handleClick, dropImage }) => {
     const [img] = useImage(image.src);
     
     return (
@@ -43,11 +43,11 @@ const URLImage = ({ image, handleClick }) => {
             image={img}
             x={image.x}
             y={image.y}
-            width={100}
-            height={90}
+            width={dropImage.current.offsetWidth}
+            height={dropImage.current.offsetHeight}
             // I will use offset to set origin to the center of the image
-            offsetX={img ? 100 / 2 : 0}
-            offsetY={img ? 90 / 2 : 0}
+            offsetX={img ? dropImage.current.offsetWidth / 2 : 0}
+            offsetY={img ? dropImage.current.offsetHeight / 2 : 0}
             onClick={handleClick}
         />
     );
@@ -56,6 +56,7 @@ const URLImage = ({ image, handleClick }) => {
 const Drop = (props) => {
     const dragUrl = React.useRef();
     const stageRef = React.useRef();
+    const draggableImage = React.useRef();
     const [images, setImages] = React.useState([]);
     const [playRemoveEffect] = useSound(removeEffect)
     const [hover, setHover] = React.useState(false)
@@ -161,7 +162,7 @@ const Drop = (props) => {
                                 )
                                 playRemoveEffect()
                                 props.decCount(1)
-                            }} />;
+                            }} dropImage={draggableImage}/>;
                         })}
                     </Layer>
                 </Stage>
@@ -179,6 +180,7 @@ const Drop = (props) => {
                     onTouchStart = {(e) => {
                         dragUrl.current = e.target.src;
                     }}
+                    ref={draggableImage}
                     className={"noselect draggableImage " + animate}
                     onMouseEnter={() => { toggleHover(true) }}
                     onMouseLeave={() => { toggleHover(false) }}
