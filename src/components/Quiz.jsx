@@ -24,6 +24,7 @@ class Quiz extends React.Component {
     images: [bowl, rooster],
     randomImage: "",
     data: [],
+    totalProblems : 1
   };
 
   earnLife = () => {
@@ -70,7 +71,11 @@ class Quiz extends React.Component {
   componentWillUnmount() {
     this._isMounted = false;
   }
-
+  componentDidUpdate(){
+    if(this.state.totalProblems > sessionData.limit){
+      this.props.onEndGame(this.state.points)
+    }
+  }
 
   wrongAnswer = () => {
     this._isMounted && this.props.onWrongAnswer();
@@ -87,7 +92,8 @@ class Quiz extends React.Component {
       this._isMounted &&
         this.setState({
           modalShowing: false,
-          answer: 0
+          answer: 0,
+          totalProblems : this.state.totalProblems + 1
         });
       if (this.props.lifes > 0) (this.answerInput && this.answerInput.focus());
     }, 2500);
