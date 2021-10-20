@@ -179,9 +179,7 @@ const Drop = (props) => {
             </DragDropContainer> : <h4> Remove 1 to get 1</h4>}
             <br />
             <br />
-            <br />
-            <br />
-            <br />
+            
         </div>
     );
 };
