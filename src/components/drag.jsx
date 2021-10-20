@@ -2,16 +2,16 @@ import React from 'react';
 import { Stage, Layer, Image } from 'react-konva';
 import useImage from 'use-image';
 import './drag.css'
-import _1 from '../assets/sounds/_1.mp3';
-import _2 from '../assets/sounds/_2.mp3';
-import _3 from '../assets/sounds/_3.mp3';
-import _4 from '../assets/sounds/_4.mp3';
-import _5 from '../assets/sounds/_5.mp3';
-import _6 from '../assets/sounds/_6.mp3';
-import _7 from '../assets/sounds/_7.mp3';
-import _8 from '../assets/sounds/_8.mp3';
-import _9 from '../assets/sounds/_9.mp3';
-import _10 from '../assets/sounds/_10.mp3';
+// import _1 from '../assets/sounds/_1.mp3';
+// import _2 from '../assets/sounds/_2.mp3';
+// import _3 from '../assets/sounds/_3.mp3';
+// import _4 from '../assets/sounds/_4.mp3';
+// import _5 from '../assets/sounds/_5.mp3';
+// import _6 from '../assets/sounds/_6.mp3';
+// import _7 from '../assets/sounds/_7.mp3';
+// import _8 from '../assets/sounds/_8.mp3';
+// import _9 from '../assets/sounds/_9.mp3';
+// import _10 from '../assets/sounds/_10.mp3';
 import removeEffect from '../assets/sounds/removeItem.mp3'
 import useSound from 'use-sound';
 import dropSound from '../assets/sounds/drop.wav'
@@ -58,30 +58,29 @@ const Drop = (props) => {
     const [hover, setHover] = React.useState(false)
     const [stageWidth, setStageWidth] = React.useState(300)
     const [stageHeight, setStageHeight] = React.useState(200)
-    const [dropS] = React.useState(new Audio(dropSound))
 
     // const dragThis = React.useRef();
     const container = React.useRef();
 
-    const [sounds] = React.useState([
-        new Audio(_1),
-        new Audio(_2),
-        new Audio(_3),
-        new Audio(_4),
-        new Audio(_5),
-        new Audio(_6),
-        new Audio(_7),
-        new Audio(_8),
-        new Audio(_9),
-        new Audio(_10),
+    // const [sounds] = React.useState([
+    //     new Audio(_1),
+    //     new Audio(_2),
+    //     new Audio(_3),
+    //     new Audio(_4),
+    //     new Audio(_5),
+    //     new Audio(_6),
+    //     new Audio(_7),
+    //     new Audio(_8),
+    //     new Audio(_9),
+    //     new Audio(_10),
 
-    ]);
+    // ]);
 
-    const playSoundEffect = (soundEffectIndex) => {
-        if (soundEffectIndex < sounds.length) {
-            sounds[soundEffectIndex].play();
-        }
-    }
+    // const playSoundEffect = (soundEffectIndex) => {
+    //     if (soundEffectIndex < sounds.length) {
+    //         sounds[soundEffectIndex].play();
+    //     }
+    // }
     const toggleHover = (value) => {
         setHover(value)
     }
@@ -136,7 +135,7 @@ const Drop = (props) => {
                                 },
                             ])
                         );
-                        playSoundEffect(props.count)
+                       // playSoundEffect(props.count)
                         props.incCount(1)
                     }}
                 >

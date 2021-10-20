@@ -8,7 +8,6 @@ import sessionData from "../utils/sessionData.js"
 import Drop from "./drag.jsx";
 import DifficultDrag from "./DifficultDrag";
 import "animate.css"
-import Hints from "./Hints";
 class Quiz extends React.Component {
   _isMounted = false;
   _secondsIntervalRef;
