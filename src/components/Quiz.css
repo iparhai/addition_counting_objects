@@ -5,35 +5,35 @@
 }
 
 /* Clear floats after image containers */
+
 .row::after {
   content: "";
   clear: both;
   display: table;
 }
+
 .center {
   margin-left: auto;
   margin-right: auto;
 }
 
- 
 .btn {
   box-sizing: border-box;
   -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   background-color: transparent;
   border: 2px solid #e74c3c;
   border-radius: 0.6em;
   color: #e74c3c;
   cursor: pointer;
-  
-  
   font-size: 2rem;
   font-weight: 400;
   line-height: 1;
   margin: 20px;
-  margin-top: -10vh;
-  z-index:999;
+  /* margin-top: -10vh;
+  margin-right: 5vh; */
+  z-index: 999;
   padding: 1.6em 2.8em;
   text-decoration: none;
   text-align: center;
@@ -41,91 +41,91 @@
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
 }
+
 .btn:hover, .btn:focus {
   color: #fff;
   outline: 0;
 }
 
+.dropBox {
+  margin-right: 5vh;
+  margin-left : 5vh;
+  width: 100%;
+  max-width: 50vh;
+  max-height: 30vh;
+  border: 3px dashed white;
+}
+
 .fourth {
-  border-color: #f1c40f;
-  color: #fff;
-  background-image: -webkit-linear-gradient(45deg, #f1c40f 50%, transparent 50%);
-  background-image: linear-gradient(45deg, #f1c40f 50%, transparent 50%);
+  border-color: black;
+  background-color: #f1c40f;
+  color: black;
+  background-image: -webkit-linear-gradient(45deg, black 50%, transparent 50%);
+  background-image: linear-gradient(45deg, black 50%, transparent 50%);
   background-position: 100%;
   background-size: 400%;
   -webkit-transition: background 300ms ease-in-out;
   transition: background 300ms ease-in-out;
 }
+
 .fourth:hover {
   background-position: 0;
 }
-.questionImage{
+
+.questionImage {
   width: 15vh;
-  max-width: 150px;
+  max-width: 100px;
 }
 
-.answerButton{
-  font-size: 4vw;
+.answerButton {
+  font-size: 2vw;
   height: 5vh;
-  line-height: 1vh;
-  vertical-align :middle;
+  line-height: 0vh;
+  vertical-align: middle;
   /* margin: 2vh; */
-  padding: 5vh;
+  padding: 3vh;
   position: relative;
 }
 
-.objectLeft, .objectRight{
-float : left;
-}
-.objectRow{
-margin-top: 10vh;
-}
-@media only screen and (max-width: 700px) {
-.objectLeft, .objectRight{
-  float : left;
-  width : 80%;
-  text-align: center;
-}
-.objectLeft{
-  margin-left: 10%;
-}
-.objectRight{
-  margin-left: 10%;
-}
-.operator{
-  width: 100%;
+.objectLeft, .objectRight {
   float: left;
-  text-align: center;
-  line-height : "10px";
-  height:"25px";
 }
-.questionImage{
-  width: 14vw;
+
+.objectRow {
+  margin-top: 10vh;
 }
-.draggableImage{
-  width: 14vw;
-}
-.dropBox{
-  margin: auto;
+.parentDiv {
+  margin-top: 20vh;
   width: 100%;
-  max-width: 300px;
-  height: 20vh;
-  /* max-height: 200px; */
-  border: 2px dashed white;
-  margin-top:-12vh
 }
 
 
+@media only screen and (max-width: 700px) {
+  .objectLeft, .objectRight {
+    float: left;
+    width: 80%;
+    text-align: center;
+  }
+  .objectLeft {
+    margin-left: 10%;
+  }
+  .objectRight {
+    margin-left: 10%;
+  }
+  .operator {
+    width: 100%;
+    float: left;
+    text-align: center;
+    line-height: "10px";
+    height: "25px";
+  }
+  .questionImage {
+    width: 14vw;
+  }
+  .draggableImage {
+    width: 14vw;
+  }
 }
-
-
-
-
-
-
-
-
-
 
 
 
