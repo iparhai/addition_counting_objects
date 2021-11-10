@@ -33,7 +33,7 @@ import bowl from "../assets/bowl.png"
 // import _6  from '../assets/sounds/_6.mp3';
 
 
-const URLImage = ({ image, handleClick, imageRef }) => {
+const URLImage = ({ image, handleClick, imageRef , width, height}) => {
     const [img] = useImage(image.src);
 
     console.log(imageRef)
@@ -42,11 +42,11 @@ const URLImage = ({ image, handleClick, imageRef }) => {
             image={img}
             x={image.x}
             y={image.y}
-            width={90}
-            height={70}
+            width={width}
+            height={height}
             // I will use offset to set origin to the center of the image
-            offsetX={img ? 90 / 2 : 0}
-            offsetY={img ? 70 / 2 : 0}
+            offsetX={img ? width / 2 : 0}
+            offsetY={img ? height / 2 : 0}
             onClick={handleClick}
             onTouchStart={handleClick}
         />
@@ -118,15 +118,15 @@ const Drop = (props) => {
                     {props.answer}
                 </button>
                 <br />
-                <button className="App-link" style={{
+                <button className="App-link fa fa-paper-plane" style={{
                     background: "rgb(49 205 97)",
-                    padding: "10px",
+
                     border: "1px solid #057897",
                     borderRadius: "0.6em",
-                }} onClick={props.handleAnswer}>Check</button>
+                }} onClick={props.handleAnswer}></button>
             </div>
             <div className="dropBox"
-                ref={container}
+                ref={container} 
             >
                 <DropTarget targetKey="me"
                     onHit={() => {
@@ -157,34 +157,34 @@ const Drop = (props) => {
                                     )
                                     playRemoveEffect()
                                     props.decCount(1)
-                                }} imageRef={targetImage} />;
+                                }} width={targetImage.current.containerElem.offsetWidth} height={targetImage.current.containerElem.offsetHeight} />;
                             })}
                         </Layer>
                     </Stage>
-
                 </DropTarget>
             </div>
             <div >
                 <DragDropContainer targetKey="me"
                     onDragStart={() => {
-                        console.log(targetImage)
+                        console.log(targetImage.current.containerElem.offsetHeight)
                     }}
                     onDrop={(e) => {
-                        console.log(e.dropData.name)
+                        // console.log(e.dropData.name)
                     }}
                     style={{
                         border: "1px dashed white",
                         borderRadius: "0.6em",
                         padding: "15px"
                     }}
+                    ref={ e => targetImage.current = e}
+                    
                 >
-
                     <img
                         alt="lion"
                         src={props.img}
                         className={"noselect  questionImage"}
                         style={{display : "block"}}
-                        ref={targetImage}
+                        
                     />
 
                 </DragDropContainer>

@@ -45,8 +45,8 @@ class Hints extends React.Component {
                                 right: 0,
                                 bottom: 0,
                                 margin: "auto",
-                                maxWidth: "1000px",
-                                width: "60%",
+                                maxWidth: "800px",
+                                width: "50%",
                                 position: "absolute"
                             }} />
                         </div>}

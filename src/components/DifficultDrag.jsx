@@ -33,18 +33,18 @@ import ball1 from '../assets/1.svg'
 // import _6  from '../assets/sounds/_6.mp3';
 
 
-const URLImage = ({ image, handleClick }) => {
+const URLImage = ({ image, handleClick, width, height }) => {
     const [img] = useImage(image.src);
     return (
         <Image
             image={img}
             x={image.x}
             y={image.y}
-            width={90}
-            height={70}
+            width={width}
+            height={height}
             // I will use offset to set origin to the center of the image
-            offsetX={img ? 90 / 2 : 0}
-            offsetY={img ? 70 / 2 : 0}
+            offsetX={img ? width / 2 : 0}
+            offsetY={img ? height / 2 : 0}
             onClick={handleClick}
             onTouchStart={handleClick}
         />
@@ -62,6 +62,7 @@ const Drop = (props) => {
     const [stageHeight, setStageHeight] = React.useState(200)
     const [currentImage, setCurrentImage] = React.useState(null)
     const [toIncrement, setToIncrement] = React.useState(1)
+    const targetImage = React.useRef();
 
     // const dragThis = React.useRef();
     const container = React.useRef();
@@ -154,13 +155,11 @@ const Drop = (props) => {
                         props.incCount(toIncrement)
                     }}
                 >
-
                     <Stage
                         width={stageWidth}
                         height={stageHeight}
                         ref={stageRef}
                     >
-
                         <Layer>
 
                             {images.map((image) => {
@@ -176,7 +175,7 @@ const Drop = (props) => {
                                         props.decCount(1)
                                     }
 
-                                }} />;
+                                }} width={targetImage.current.containerElem.offsetWidth} height={targetImage.current.containerElem.offsetHeight} />;
                             })}
                         </Layer>
                     </Stage>
@@ -189,32 +188,34 @@ const Drop = (props) => {
                         setCurrentImage(ball10)
                         setToIncrement(10)
                     }}
+                    ref={e => targetImage.current = e}
                 >
 
                     <img
                         alt="lion"
                         src={ball10}
-                        className={"noselect draggableImage questionImage "}
+                        className={"noselect  questionImage "}
 
                     />
                 </DragDropContainer>
-                <br/>
+                <br />
                 <DragDropContainer targetKey="me"
                     onDragStart={() => {
                         setCurrentImage(ball1)
                         setToIncrement(1)
                     }}
+                    ref={e => targetImage.current = e}
                 >
 
                     <img
                         alt="lion"
                         src={ball1}
-                        className={"noselect draggableImage questionImage "}
+                        className={"noselect  questionImage "}
                         ref={draggableImage}
                     />
                 </DragDropContainer>
             </div>
-           
+
 
         </div>
     );
