@@ -1,8 +1,8 @@
 
 import $ from "min-jquery";
 const queryParams = new URLSearchParams(window.location.search);
-const limit = queryParams.get('limit');
-const dif = queryParams.get('dif');
+const limit = queryParams.get('limit') ? queryParams.get('limit') : 5 ;
+const dif = queryParams.get('dif') ? queryParams.get('dif') : 'b';
 let index = 0
 let data = []
 const setData = (problem, attemptedAnswer, corectAnswer) => {
@@ -22,7 +22,6 @@ const sendData = () => {
     if(data[index].attemptedAnswer == data[index].corectAnswer){
         st = 1
     }
-    const limit = queryParams.get('limit');
     const cid = queryParams.get('cid');
     const crcid = queryParams.get('crcid');
     const sid = queryParams.get('sid');

@@ -9,14 +9,11 @@ import "./MathQuiz.css"
 import TableScore from '../components/TableScore';
 import Hints from '../components/Hints';
 import grocerySound from '../assets/sounds/grocerySound.mp3'
-import on from '../assets/sound.png'
-import off from '../assets/mute.png'
 
 class MathQuiz extends React.Component {
   state = {
     isBeginningDone: false,
     lastPoints: 0,
-    img: on,
     // sound: false,
     // curr: this.notPlayAudioWithVideo
     sound: new Audio(grocerySound),
@@ -39,14 +36,12 @@ class MathQuiz extends React.Component {
     if (!this.state.sound.paused) {
       this.state.sound.pause()
       this.setState({
-        img: off,
         mute: true
       })
     }
     else if (this.state.sound.paused) {
       this.state.sound.play()
       this.setState({
-        img: on,
         mute: false
       })
     }
