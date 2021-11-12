@@ -35,7 +35,6 @@ import bowl from "../assets/bowl.png"
 
 const URLImage = ({ image, handleClick, imageRef , width, height}) => {
     const [img] = useImage(image.src);
-
     console.log(imageRef)
     return (
         <Image
